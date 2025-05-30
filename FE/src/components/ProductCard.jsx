@@ -2,18 +2,18 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "../index.css";
 
-const ProductCard = ({ image, title, salePrice, price, id }) => {
+const ProductCard = ({ image, name, salePrice, price, _id }) => {
   return (
     <Link
-      to={`/detail/${id}`}
+      to={`/detail/${_id}`}
       className="bg-white rounded-xl shadow-lg p-4 w-64 hover:shadow-2xl transition flex flex-col cursor-pointer"
       style={{ textDecoration: "none", color: "inherit" }}
     >
       <div className="flex-1 flex items-center justify-center mb-3">
-        <img src={image} alt={title} className="h-40 object-contain border" />
+        <img src={`data:image/jpeg;base64,${image}`} alt={name} className="h-40 object-contain border" />
       </div>
       <h3 className="text-base font-semibold mb-1 line-clamp-2 min-h-[48px]">
-        {title}
+        {name}
       </h3>
       <div className="flex items-center gap-2 mb-3">
         <span className="text-blue-600 font-bold text-lg">

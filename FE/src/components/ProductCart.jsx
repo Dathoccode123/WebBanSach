@@ -5,7 +5,7 @@ const ProductCart = ({
   checked,
   onCheck,
   image,
-  title,
+  name,
   salePrice,
   quantity,
   onDecrease,
@@ -21,12 +21,12 @@ const ProductCart = ({
         className="w-5 h-5 accent-blue-600"
       />
       <img
-        src={image}
-        alt={title}
+        src={`data:image/jpeg;base64,${image}`}
+        alt={name}
         className="w-20 h-20 object-contain rounded"
       />
       <div className="flex-1">
-        <div className="font-semibold text-base mb-1">{title}</div>
+        <div className="font-semibold text-base mb-1">{name}</div>
         <div className="text-blue-600 font-bold text-lg mb-2">
           {salePrice?.toLocaleString()}₫
         </div>

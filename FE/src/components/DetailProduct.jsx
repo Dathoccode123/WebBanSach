@@ -16,7 +16,7 @@ const DetailProduct = ({ image, title, salePrice, price, description }) => {
     <div className="max-w-6xl mx-auto bg-white rounded-xl shadow-lg p-10 flex gap-12 mt-12">
       <div className="w-1/2 flex items-center justify-center">
         <img
-          src={image}
+          src={`data:image/jpeg;base64,${image}`}
           alt={title}
           className="w-full h-[480px] object-contain rounded-xl"
         />
