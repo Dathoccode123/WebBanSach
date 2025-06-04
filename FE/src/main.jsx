@@ -11,6 +11,10 @@ import AdminUserPage from "./page/admin/AdminUserPage.jsx";
 import AdminStatisticsPage from "./page/admin/AdminStatisticsPage.jsx";
 import AdminBookPage from "./page/admin/AdminBookPage.jsx";
 import AdminOrderPage from "./page/admin/AdminOrderPage.jsx";
+import UserInfoPage from "./page/user/UserInfoPage.jsx";
+import CheckoutPage from "./page/user/PaymentPage.jsx";
+import SearchPage from "./page/user/SearchPage.jsx";
+import SinglePaymentPage from "./page/user/SinglePaymentPage.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -26,7 +30,10 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Route path="/admin/statistics" element={<AdminStatisticsPage />} />
         <Route path="/admin/books" element={<AdminBookPage />} />
         <Route path="/admin/orders" element={<AdminOrderPage />} />
-        {/* Thêm các route khác nếu cần */}
+        <Route path="/info" element={<UserInfoPage />} />
+        <Route path="/checkout" element={<CheckoutPage />} />
+        <Route path="/search" element={<SearchPage />} />
+        <Route path="/pay/:id" element={<SinglePaymentPage />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

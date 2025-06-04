@@ -10,6 +10,7 @@ const Book = new Schema(
     type: { type: String, required: true },
     amount: { type: Number },
     image: { type: String }, // ➔ đây là trường lưu base64
+    description: { type: String }, // Thêm trường mô tả
   },
   {
     timestamps: true,

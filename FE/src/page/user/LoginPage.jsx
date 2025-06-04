@@ -10,14 +10,30 @@ const LoginPage = () => {
 
   const handleLogin = async (form) => {
     try {
-      const res = await loginUser(form);
-      // Xử lý lưu token nếu cần
-      // localStorage.setItem("token", res.token);
+      const res = await loginUser(form); // gọi API
+
+      // Lưu token và thông tin user vào localStorage
+      localStorage.setItem("token", res.token);
+      localStorage.setItem(
+        "user",
+        JSON.stringify({
+          _id: res._id,
+          name: res.name ,
+          email: res.email ,
+          address: res.address ,
+          phone: res.phone ,
+          token: res.token ,
+        })
+      );
+
       alert("Đăng nhập thành công!");
-      if (res.isAdmin === true) {
+
+      // Điều hướng theo vai trò
+      if (res.isAdmin) {
         navigate("/admin");
       } else {
         navigate("/");
+        console.log(localStorage.getItem("user"));
       }
     } catch (err) {
       alert("Đăng nhập thất bại. Vui lòng kiểm tra lại thông tin!");

@@ -14,20 +14,26 @@ export const getOrderById = async (id) => {
   return res.data;
 };
 
-// Tạo đơn hàng mới
-export const createOrder = async (data) => {
-  const res = await axios.post(`${API_BASE}`, data);
+// Lấy tất cả đơn hàng của 1 user
+export const getOrdersByUser = async (userId) => {
+  const res = await axios.get(`${API_BASE}/user/${userId}`);
   return res.data;
 };
 
 // Cập nhật đơn hàng
 export const updateOrder = async (id, data) => {
-  const res = await axios.put(`${API_BASE}/${id}`, data);
+  const res = await axios.put(`${API_BASE}/order/${id}`, data);
+  return res.data;
+};
+
+// Tạo đơn hàng mới
+export const createOrder = async (data) => {
+  const res = await axios.post(`${API_BASE}/create`, data);
   return res.data;
 };
 
 // Xóa đơn hàng
 export const deleteOrder = async (id) => {
-  const res = await axios.delete(`${API_BASE}/${id}`);
+  const res = await axios.delete(`${API_BASE}/delete/${id}`);
   return res.data;
 };

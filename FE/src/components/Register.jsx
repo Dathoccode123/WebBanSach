@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../index.css";
 const Register = ({ onSubmit }) => {
-  const [fullname, setFullname] = useState("");
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repassword, setRepassword] = useState("");
@@ -10,7 +10,7 @@ const Register = ({ onSubmit }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!fullname || !email || !password || !repassword) {
+    if (!name || !email || !password || !repassword) {
       setError("Vui lòng nhập đầy đủ thông tin.");
       return;
     }
@@ -19,7 +19,7 @@ const Register = ({ onSubmit }) => {
       return;
     }
     setError("");
-    if (onSubmit) onSubmit({ fullname, email, password });
+    if (onSubmit) onSubmit({ name, email, password });
   };
 
   return (
@@ -32,8 +32,8 @@ const Register = ({ onSubmit }) => {
           type="text"
           className="w-full border rounded px-3 py-2"
           placeholder="Họ và tên"
-          value={fullname}
-          onChange={(e) => setFullname(e.target.value)}
+          value={name}
+          onChange={(e) => setName(e.target.value)}
           required
         />
         <input

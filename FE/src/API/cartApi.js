@@ -23,8 +23,8 @@ export const removeFromCart = async (data) => {
 };
 
 // Xóa toàn bộ giỏ hàng của user
-export const clearCart = async (data) => {
+export const clearCart = async (userId) => {
   // data: { userId }
-  const res = await axios.post(`${API_BASE}/clear`, data);
+  const res = await axios.post(`${API_BASE}/clear`, { userId });
   return res.data;
 };

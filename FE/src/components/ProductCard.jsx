@@ -1,8 +1,35 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "../index.css";
+import { addToCart } from "../API/cartApi";
 
 const ProductCard = ({ image, name, salePrice, price, _id }) => {
+  const [userId, setUserId] = useState(null);
+
+  useEffect(() => {
+    const storedUserStr = localStorage.getItem("user");
+    if (storedUserStr) {
+      const storedUser = JSON.parse(storedUserStr);
+      setUserId(storedUser._id);
+    }
+  }, []);
+  console.log("User ID:", userId);
+
+  // Hàm xử lý thêm vào giỏ hàng
+  const handleAddToCart = async (e) => {
+    e.preventDefault();
+    if (!userId) {
+      alert("Bạn cần đăng nhập để thêm vào giỏ hàng!");
+      return;
+    }
+    try {
+      await addToCart({ userId, bookId: _id, quantity: 1 });
+      alert("Đã thêm vào giỏ hàng!");
+    } catch {
+      alert("Thêm vào giỏ hàng thất bại!");
+    }
+  };
+
   return (
     <Link
       to={`/detail/${_id}`}
@@ -10,7 +37,11 @@ const ProductCard = ({ image, name, salePrice, price, _id }) => {
       style={{ textDecoration: "none", color: "inherit" }}
     >
       <div className="flex-1 flex items-center justify-center mb-3">
-        <img src={`data:image/jpeg;base64,${image}`} alt={name} className="h-40 object-contain border" />
+        <img
+          src={`data:image/jpeg;base64,${image}`}
+          alt={name}
+          className="h-40 object-contain border"
+        />
       </div>
       <h3 className="text-base font-semibold mb-1 line-clamp-2 min-h-[48px]">
         {name}
@@ -32,7 +63,7 @@ const ProductCard = ({ image, name, salePrice, price, _id }) => {
         </button>
         <button
           className="flex-1 bg-blue-600 text-white py-2 rounded-lg font-medium hover:bg-blue-700 transition"
-          onClick={(e) => e.preventDefault()}
+          onClick={handleAddToCart}
         >
           Thêm vào giỏ
         </button>

@@ -11,15 +11,17 @@ import {
 
 import { isAuth, isAdmin } from "../until.js";
 
+// Admin-only routes
+UserRouter.get('/', getAllUser);
 // Public routes
 UserRouter.post('/register', registerUser);
 UserRouter.post('/login', login);
 
 // Admin-only routes
-UserRouter.get('/', isAuth, isAdmin, getAllUser);
-UserRouter.delete('/delete/:id', isAuth, isAdmin, DeleteUser);
+UserRouter.get('/', getAllUser);
+UserRouter.delete('/delete/:id', DeleteUser);
 
 // User-only routes
-UserRouter.put('/profile', isAuth, updateProfile);
+UserRouter.put('/profile/:id', updateProfile);
 
 export default UserRouter;

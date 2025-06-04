@@ -37,7 +37,7 @@ export const registerUser = expressAsyncHandler(async (req, res) => {
 });
 
 export const login = expressAsyncHandler(async (req, res) => {
-    const user = await UserModel.findOne({ email: req.body.email, password: req.body.password });
+    const user = await UserModel.findOne({ email: req.body.email, password: req.body.password  });
     if (user) {
         res.json({
             _id: user._id,
@@ -55,9 +55,10 @@ export const login = expressAsyncHandler(async (req, res) => {
 
 export const DeleteUser = expressAsyncHandler(async (req, res) => {
     const user = await UserModel.findById(req.params.id);
+    console.log(user);
 
     if (user) {
-        await user.remove();
+        await user.deleteOne();
         res.json({ message: 'Xóa người dùng thành công' });
     } else {
         res.status(404).json({ message: 'Người dùng không tồn tại' });
@@ -65,7 +66,7 @@ export const DeleteUser = expressAsyncHandler(async (req, res) => {
 });
 
 export const updateProfile = expressAsyncHandler(async (req, res) => {
-    const user = await UserModel.findById(req.user._id); // Lấy từ token đã xác thực
+    const user = await UserModel.findById(req.params.id); 
 
     if (user) {
         user.name = req.body.name || user.name;
@@ -81,7 +82,6 @@ export const updateProfile = expressAsyncHandler(async (req, res) => {
             email: updatedUser.email,
             phone: updatedUser.phone,
             address: updatedUser.address,
-            isAdmin: updatedUser.isAdmin,
             token: generateToken(updatedUser),
         });
     } else {

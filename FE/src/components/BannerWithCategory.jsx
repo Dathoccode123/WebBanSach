@@ -1,21 +1,30 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "../index.css";
 
 const categories = [
-  "Sách Lập Trình",
-  "Sách Kỹ Năng",
-  "Sách Ngoại Ngữ",
-  "Sách Thiếu Nhi",
-  "Sách Văn Học",
-  "Sách Kinh Tế",
+  "Văn Học",
+  "Kinh Tế",
+  "Tâm Lý",
+  "Thiếu Nhi",
+  "Lịch Sử",
+  "Khác",
 ];
 
 const BannerWithCategory = () => {
+  const navigate = useNavigate();
+
+  const handleCategoryClick = (cat) => {
+    // Chuyển hướng đến trang home với query type
+    navigate(`/?type=${encodeURIComponent(cat)}`);
+    console.log(`Chuyển hướng đến thể loại: ${cat}`);
+  };
+
   return (
     <div className="flex w-full max-w-7xl mx-auto my-8 gap-6">
       {/* Danh mục */}
       <div
-        className="bg-white rounded-lg shadow p-4 w-1/3 flex flex-col"
+        className="bg-white rounded-lg shadow p-4 w-1/3 flex flex-col border border-blue-200"
         style={{ height: "360px" }}
       >
         <h2 className="font-bold text-lg mb-4 text-blue-600">Danh mục sách</h2>
@@ -23,7 +32,8 @@ const BannerWithCategory = () => {
           {categories.map((cat, idx) => (
             <li
               key={idx}
-              className="py-2 px-3 rounded hover:bg-blue-50 cursor-pointer transition"
+              className="py-2 px-3 rounded cursor-pointer transition hover:bg-blue-50 hover:text-blue-600"
+              onClick={() => handleCategoryClick(cat)}
             >
               {cat}
             </li>

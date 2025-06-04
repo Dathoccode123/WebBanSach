@@ -9,7 +9,7 @@ export const searchUser = async (q) => {
 };
 
 // Product (Book) search
-export const searchProduct = async (q) => {
+export const searchBook = async (q) => {
   const res = await axios.get(`${API_BASE}/search/book`, { params: { q } });
   return res.data;
 };

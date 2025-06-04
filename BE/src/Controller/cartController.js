@@ -1,19 +1,23 @@
-import {CartModel} from "../model/cartModel.js";
+// Lấy giỏ hàng của user từ userId
+import { CartModel } from "../model/cartModel.js";
 
-// Lấy giỏ hàng của user
 export const getCartByUser = async (req, res) => {
   try {
     const { userId } = req.params;
-    const cart = await CartModel.findOne({ userId }).populate("items.bookId");
+
+    const cart = await CartModel.findOne({ userId: userId }).populate("items.bookId");
+
+
     if (!cart) {
       return res.status(404).json({ message: "Không tìm thấy giỏ hàng" });
     }
+
     res.json(cart);
   } catch (err) {
+    console.error("Server error:", err);
     res.status(500).json({ message: "Lỗi server" });
   }
 };
-
 // Thêm hoặc cập nhật sản phẩm trong giỏ hàng
 export const addToCart = async (req, res) => {
   try {

@@ -37,7 +37,6 @@ connectDB();
 app.get('/', (req, res) => {
     res.send('Chào mừng đến với API sách');
 });
-
 // Gắn routers
 app.use('/user', UserRouter);
 app.use('/book', BookRouter);

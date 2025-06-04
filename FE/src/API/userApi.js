@@ -9,8 +9,8 @@ export const getAllUsers = async () => {
 };
 
 // Lấy chi tiết user theo id
-export const getUserById = async (id) => {
-  const res = await axios.get(`${API_BASE}/${id}`);
+export const getUserById = async (_id) => {
+  const res = await axios.get(`${API_BASE}/${_id}`);
   return res.data;
 };
 
@@ -27,13 +27,13 @@ export const loginUser = async (data) => {
 };
 
 // Cập nhật user
-export const updateUser = async (id, data) => {
-  const res = await axios.put(`${API_BASE}/${id}`, data);
+export const updateUser = async (_id, data) => {
+  const res = await axios.put(`${API_BASE}/profile/${_id}`, data);
   return res.data;
 };
 
 // Xóa user
-export const deleteUser = async (id) => {
-  const res = await axios.delete(`${API_BASE}/${id}`);
+export const deleteUser = async (_id) => {
+  const res = await axios.delete(`${API_BASE}/delete/${_id}`);
   return res.data;
 };

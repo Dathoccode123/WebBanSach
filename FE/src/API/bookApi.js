@@ -7,6 +7,10 @@ export const getAllBooks = async () => {
   const res = await axios.get(`${API_BASE}`);
   return res.data;
 };
+export const getBooksByType = async (type) => {
+  const res = await axios.get(`${API_BASE}/filter`, { params: { type } });
+  return res.data;
+};
 
 // Lấy chi tiết sách theo id
 export const getBookById = async (_id) => {
@@ -22,12 +26,12 @@ export const createBook = async (data) => {
 
 // Cập nhật sách
 export const updateBook = async (_id, data) => {
-  const res = await axios.put(`${API_BASE}/${_id}`, data);
+  const res = await axios.put(`${API_BASE}/update/${_id}`, data);
   return res.data;
 };
 
 // Xóa sách
 export const deleteBook = async (_id) => {
-  const res = await axios.delete(`${API_BASE}/${_id}`);
+  const res = await axios.delete(`${API_BASE}/delete/${_id}`);
   return res.data;
 };
